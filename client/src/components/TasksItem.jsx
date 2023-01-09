@@ -14,14 +14,6 @@ const TasksItem = ({task}) => {
 
     task.done ? bg = '#71717A' : bg= '#FBBF24';
 
-    /* if(task.done == 1) {
-        bg = '#71717A';
-        //bg = 'bg-amber-400';
-    } else {
-        bg= '#FBBF24';
-        //bg = 'bg-zinc-500';
-    }*/
-
     return (
         <div className='rounded-md p-4 shadow-lg xl:w-5/6' style={{background: `${bg}`}}>
             <header className='flex justify-between'>
