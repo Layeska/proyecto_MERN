@@ -7,7 +7,7 @@ import {PORT} from "./config.js";
 import indexRoutes from "./routes/index.routes.js";
 import tasksRoutes from "./routes/tasks.routes.js";
 
-import { expressCspHeader, INLINE, NONE, SELF } from 'express-csp-header';
+import { expressCspHeader, INLINE, NONE, SELF, NONCE } from 'express-csp-header';
 
 const app = express();
 const _dirName = dirname(fileURLToPath(import.meta.url));
@@ -18,11 +18,11 @@ app.use(express.json());
 
 app.use(expressCspHeader({
     directives: {
-        'default-src': [SELF],
-        'script-src': [SELF, INLINE, 'somehost.com'],
-        'style-src': [SELF, 'mystyles.net'],
+        'default-src': [NONCE],
+        'script-src': [SELF, INLINE, 'https://proyectomern-production.up.railway.app/'],
+        'style-src': [SELF ],
         'img-src': ['data:', 'images.com'],
-        'worker-src': [NONE],
+        'worker-src': [NONCE],
         'block-all-mixed-content': true
     }
 }));
