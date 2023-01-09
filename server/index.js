@@ -7,16 +7,25 @@ import {PORT} from "./config.js";
 import indexRoutes from "./routes/index.routes.js";
 import tasksRoutes from "./routes/tasks.routes.js";
 
+const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
+
 const app = express();
 const _dirName = dirname(fileURLToPath(import.meta.url));
 
 app.use(cors());
 app.use(express.json());
 
-app.use((req, res, next) => {
-    res.setHeader('Content-Security-Policy',"default-src 'self' 'unsafe-inline'");
-    next();
-});
+
+app.use(expressCspHeader({
+    directives: {
+        'default-src': [SELF],
+        'script-src': [SELF, INLINE, 'somehost.com'],
+        'style-src': [SELF, 'mystyles.net'],
+        'img-src': ['data:', 'images.com'],
+        'worker-src': [NONE],
+        'block-all-mixed-content': true
+    }
+}));
 
 app.use(indexRoutes);
 app.use(tasksRoutes);
