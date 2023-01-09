@@ -7,7 +7,7 @@ import {PORT} from "./config.js";
 import indexRoutes from "./routes/index.routes.js";
 import tasksRoutes from "./routes/tasks.routes.js";
 
-const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
+import { expressCspHeader, INLINE, NONE, SELF } from 'express-csp-header';
 
 const app = express();
 const _dirName = dirname(fileURLToPath(import.meta.url));
