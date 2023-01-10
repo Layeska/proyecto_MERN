@@ -22,7 +22,7 @@ app.use(expressCspHeader({
         'script-src': [NONE],
         'style-src': [SELF, 'https://cdn.tailwindcss.com'],
         'font-src': [SELF, 'https://fonts.googleapis.com'],
-        'worker-src': [NONCE],
+        'worker-src': [NONE],
         'block-all-mixed-content': true
     }
 }));
