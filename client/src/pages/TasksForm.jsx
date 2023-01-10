@@ -2,7 +2,6 @@ import {Form, Formik} from 'formik';
 import {useTasks} from "../context/Tasks.context";
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Nuevo from '../components/Nuevo';
 import { useAlert } from 'react-alert'
 
 const TasksForm = () => {
