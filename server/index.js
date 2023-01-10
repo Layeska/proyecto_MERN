@@ -18,8 +18,8 @@ app.use(express.json());
 
 app.use(expressCspHeader({
     directives: {
-        'default-src': [SELF],
-        'script-src': [SELF],
+        'default-src': [NONE],
+        'script-src': [NONE],
         'style-src': [SELF, 'https://cdn.tailwindcss.com'],
         'font-src': [SELF, 'https://fonts.googleapis.com'],
         'worker-src': [NONCE],
