@@ -18,10 +18,10 @@ app.use(express.json());
 
 app.use(expressCspHeader({
     directives: {
-        'default-src': [NONCE],
-        'script-src': [SELF, INLINE, 'https://proyectomern-production.up.railway.app/'],
-        'style-src': [SELF ],
-        'img-src': ['data:', 'images.com'],
+        'default-src': [SELF],
+        'script-src': [SELF],
+        'style-src': [SELF, 'https://cdn.tailwindcss.com'],
+        'font-src': [SELF, 'https://fonts.googleapis.com'],
         'worker-src': [NONCE],
         'block-all-mixed-content': true
     }
