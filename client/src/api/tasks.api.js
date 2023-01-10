@@ -1,7 +1,7 @@
 import axios from 'axios';
 const API_URL = import.meta.env.VITE_URL;
 
-export const getTasksRequest = async () => await axios.get(`${API_URL}/tasks}`);
+export const getTasksRequest = async () => await axios.get(`${API_URL}/tasks`);
 
 export const createTasksRequest = async (tasks) => await axios.post(`${API_URL}/tasks`, tasks);
 
