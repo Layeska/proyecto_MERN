@@ -1,35 +1,47 @@
 import React from 'react';
 import { useTasks } from '../context/Tasks.context';
 import { useNavigate } from 'react-router-dom';
-import { BiEdit } from "react-icons/bi";
-import { MdOutlineDelete } from "react-icons/md";
-import { AiFillCloseSquare } from "react-icons/ai";
+import { useAlert  } from 'react-alert'
+
+import { FcCheckmark } from 'react-icons/fc';
+import { MdDeleteOutline, MdOutlinePublishedWithChanges } from 'react-icons/md';
 
 const TasksItem = ({task}) => {
     const navigate = useNavigate();
     const { deleteTasks, toggleTasksDone } = useTasks();
-    let bg = '';
+    const alert = useAlert();
 
-    const handleDone = async () => await toggleTasksDone(task.id);
+    const borrar = () => {
+        alert.success('Task deleted successfully');
+        deleteTasks(task.id);
+    }
+    
+    const handleDone = async () => {
+        task.done ? alert.show("Tarea Pendiente!", { type: 'info', timeout: 2000}) : alert.show("Tarea realizada!", { type: 'success', timeout: 2000});
+        await toggleTasksDone(task.id);
+    }
 
-    task.done ? bg = '#71717A' : bg= '#FBBF24';
+    //! Para saber visualmente cual está realizada tachandola
+    let change = 'none';
+    task.done ? change = 'line-through' : change = 'none';
 
     return (
-        <div className='rounded-md p-4 shadow-lg xl:w-5/6' style={{background: `${bg}`}}>
-            <header className='flex justify-between'>
-                <h2 className='text-sm font-bold'>{task.title}</h2>
-                <span className=''>{task.done == 1 ? '✅'  : '❌'}</span>
-            </header>
-            <p className='text-xs'>{task.description}</p>
-            <span className='text-s'>{task.CREATEAt.slice(0,-14)}</span>
-            <div className='flex gap-x-1'>
-                <button className= 'hover:bg-slate-300 rounded-md px-2 py-1 text-black' onClick={() => deleteTasks(task.id)}><MdOutlineDelete/></button>
-                <button className='hover:bg-slate-300 rounded-md px-2 py-1 text-black' onClick={() => navigate(`/edit/${task.id}`)}><BiEdit/></button>
-                <button className='px-2 py-1 text-gray-600 hover:text-white' onClick={() => handleDone(task.done)}>Tarea {task.done == 1 ? 'Completada' : 'No Completa'}</button>
-            </div>
-        </div>
+        <tr className='odd:bg-orange-100 even:bg-orange-50 text-orange-800' style={{textDecoration: `${change}`}}>
+            <td className='p-2 text-center'>{task.id}</td>
+            <td className='p-2 text-left text-gray-700'>{task.title}, {task.description} <br/> {task.CREATEAt.slice(0,-14)} </td>
+            <td className='py-2 text-left flex gap-2'>
+                <button onClick={() => navigate(`/edit/${task.id}`)}>
+                    <FcCheckmark/>
+                </button>
+                <button onClick={borrar}>
+                    <MdDeleteOutline/>
+                </button>
+                <button onClick={() => handleDone(task.done)}>
+                    <MdOutlinePublishedWithChanges/>
+                </button>
+            </td>
+        </tr>
     );
 }
 
-
-export default TasksItem
+export default TasksItem;
