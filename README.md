@@ -1,7 +1,7 @@
 # proyecto_MERN
 Proyecto de lista de tareas, creado con Mongo, Express, React y Node.js - MERN
 
-![]https://i.postimg.cc/28BnCSbq/mobile.png)
+![](https://i.postimg.cc/28BnCSbq/mobile.png)
 
 ## Tecnologías
 - Front
