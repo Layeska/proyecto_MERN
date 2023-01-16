@@ -12,5 +12,3 @@ Proyecto de lista de tareas, creado con Mongo, Express, React y Node.js - MERN
   - Node
   - Express
   - MySQL
-
-En proceso el testing...
